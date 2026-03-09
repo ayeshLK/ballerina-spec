@@ -53,13 +53,15 @@ The feature will be implemented by introducing an internal `ResettableRetryClien
 import ballerina/http;
 
 // Configured for high-resiliency background sync
-http:Client syncClient = check new ("http://api.sync-service.com", {
-    retryConfig: {
+http:Client syncClient = check new ("http://api.sync-service.com",
+    retryConfig = {
         count: 10,
         interval: 2,
-        resetOnExhaust: true // Enables infinite retrying
+        backOffFactor: 2.0,
+        // Enables resetting the retry attempts once the configured retry limit is exhausted
+        resetOnExhaust: true
     }
-});
+);
 ```
 
 ## Alternatives
