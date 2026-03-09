@@ -45,10 +45,8 @@ public type RetryConfig record {|
 - **`resetOnExhaust`**: When set to `true`, the internal retry counter is reset to zero after the `count` attempts are exhausted. This triggers a new cycle of retries, effectively allowing the client to continue its attempts indefinitely or until the request succeeds.
 
 ### Internal Implementation: `ResettableRetryClient`
-The feature will be implemented using an internal `ResettableRetryClient` that wraps the standard HTTP client. This client manages the retry lifecycle by:
-1. **Tracking Attempts**: Monitoring the current attempt number within the current cycle.
-2. **Cycle Management**: Detecting when `count` is reached and, if `resetOnExhaust` is enabled, resetting the counter and initiating the next cycle.
-3. **Decoupling**: Handling the retry logic independently of the underlying network transport to ensure reliability.
+
+The feature will be implemented by introducing an internal `ResettableRetryClient`, which functions as a decorator over the standard `RetryClient`. This approach maintains a clean separation of concerns, allowing the existing retry logic to remain unchanged while extending it with cycle-reset capabilities.
 
 ### Example Usage
 ```ballerina
