@@ -5,7 +5,7 @@
 - Created date - 2026-03-09
 - Updated date - 2026-03-09
 - Issue - [https://github.com/ballerina-platform/ballerina-spec/issues/1439](https://github.com/ballerina-platform/ballerina-spec/issues/1439)
-- State - Draft
+- State - Submitted
 
 ## Summary
 This proposal introduces a mechanism for the Ballerina HTTP client to reset its retry attempts upon exhaustion, facilitating high-resiliency scenarios such as continuous retrying for long-running tasks. This is achieved by extending the `http:RetryConfig` record with a `resetOnExhaust` field and implementing an internal `ResettableRetryClient` to manage the lifecycle of retry cycles.
