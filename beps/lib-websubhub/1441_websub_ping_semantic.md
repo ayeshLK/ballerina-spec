@@ -81,7 +81,7 @@ public type SubscriberService service object {
     # 
     # + topic - The topic for which the ping is sent
     # + return - Returns `websub:Acknowledgement` if healthy, `websub:SubscriptionDeletedError` for HTTP 410, or `error` for other failures
-    remote function onPing(string topic) returns Acknowledgement|SubscriptionDeletedError|error? {
+    remote function onPing(string topic) returns websub:Acknowledgement|websub:SubscriptionDeletedError|error? {
         return {
             status: 200,
             body: "OK"
